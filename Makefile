@@ -1,8 +1,10 @@
 BOOT_DIR = ./boot
 KERNEL_DIR = ./kernel
+DRIVERS_DIR = ./drivers
 
 ASM_FILE = $(wildcard ${BOOT_DIR}/*.asm)
-C_FILE = $(wildcard ${KERNEL_DIR}/*.c ${KERNEL_DIR}/*.h)
+H_FILE = $(wildcard ${KERNEL_DIR}/*.h ${DRIVERS_DIR}/*.h)
+C_FILE = $(wildcard ${KERNEL_DIR}/*.c ${DRIVERS_DIR}/*.c)
 
 # Setting tools.
 COMPILER = gcc
@@ -13,7 +15,7 @@ ASSEMBLER = nasm
 KERNEL_FLAG = -ffreestanding -nostdlib -nostdinc
 
 run: ${KERNEL_DIR}/image.bin
-	qemu-system-i386 -fda $^
+	qemu-system-x86_64 -fda $^
 
 ${KERNEL_DIR}/image.bin: ${BOOT_DIR}/boot.o ${KERNEL_DIR}/kernel.bin
 	wsl -e cat $^ > $@
@@ -27,8 +29,8 @@ ${KERNEL_DIR}/kernel.bin: ${KERNEL_DIR}/kernel.tmp
 ${KERNEL_DIR}/kernel.tmp: ${BOOT_DIR}/kernel_entry.o ${KERNEL_DIR}/kernel.o
 	${LINKER} -m i386pe -o $@ -Ttext 0x1000 $^
 
-${KERNEL_DIR}/kernel.o: ${KERNEL_DIR}/kernel.c ${C_FILE}
-	${COMPILER} -m32 -c $< -o $@ ${KERNEL_FLAG}
+${KERNEL_DIR}/kernel.o: ${KERNEL_DIR}/kernel.c ${C_FILE} ${H_FILE}
+	${COMPILER} -m32 $< -o $@ ${KERNEL_FLAG}
 
 ${BOOT_DIR}/kernel_entry.o: ${BOOT_DIR}/kernel_entry.asm
 	${ASSEMBLER} $^ -f elf32 -o $@

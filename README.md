@@ -15,6 +15,8 @@
 make
 ```
 
-## Reference
+## Reference & Issues
 
-[Compiling C to ELF32 on Windows](https://stackoverflow.com/questions/65752272/compiling-c-to-elf32-on-windows)
+- [os-tutorial](https://github.com/cfenollosa/os-tutorial)
+- [Compiling C to ELF32 on Windows](https://stackoverflow.com/questions/65752272/compiling-c-to-elf32-on-windows)
+- [C header issue: #include and "undefined reference"](https://stackoverflow.com/questions/10357117/c-header-issue-include-and-undefined-reference)

@@ -1,11 +1,21 @@
 #include "../drivers/port.c"
+// #include "../drivers/screen.h"
+#include "../drivers/test.h"
 
 void index() {
     char* video_memory = (char*) 0xb8000;
-    char message[] = "Hello, World! from 91d906h4!";
+    char message[] = "Hello, World! from HOS!";
 
-    for (int i = 0; i < 29; i++) {
-        *video_memory = *(message + i);
+    clear_screen();
+
+    // for (int i = 0; i < 25 * 80; i++) {
+    //     *(video_memory + i * 2) = ' ';
+    //     *(video_memory + i * 2 + 1) = test();
+    // }
+
+    int i = 0;
+    while (*(message + i) != 0) {
+        *video_memory = *(message + i++);
         video_memory += 2;
     }
 
@@ -21,7 +31,7 @@ void index() {
 
     /* VGA 'cells' consist of the character and its control data
      * e.g. 'white on black background', 'red text on white bg', etc */
-    int offset_from_vga = position * 2;
+    int offset_from_vga = position;
 
     /* Now you can examine both variables using gdb, since we still
      * don't know how to print strings on screen. Run 'make debug' and
@@ -34,7 +44,7 @@ void index() {
 
     /* Let's write on the current cursor position, we already know how
      * to do that */
-    char *vga = 0xb8000;
+    char* vga = (char*) 0xb8000;
     vga[offset_from_vga] = 'H'; 
     vga[offset_from_vga+1] = 0x0a; /* White text on black background */
 }
