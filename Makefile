@@ -29,8 +29,8 @@ ${KERNEL_DIR}/kernel.bin: ${KERNEL_DIR}/kernel.tmp
 ${KERNEL_DIR}/kernel.tmp: ${BOOT_DIR}/kernel_entry.o ${KERNEL_DIR}/kernel.o
 	${LINKER} -m i386pe -o $@ -Ttext 0x1000 $^
 
-${KERNEL_DIR}/kernel.o: ${KERNEL_DIR}/kernel.c ${C_FILE} ${H_FILE}
-	${COMPILER} -m32 $< -o $@ ${KERNEL_FLAG}
+${KERNEL_DIR}/kernel.o: ${C_FILE} ${H_FILE}
+	${COMPILER} -m32 ${C_FILE} -o $@ ${KERNEL_FLAG}
 
 ${BOOT_DIR}/kernel_entry.o: ${BOOT_DIR}/kernel_entry.asm
 	${ASSEMBLER} $^ -f elf32 -o $@
