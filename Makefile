@@ -17,7 +17,7 @@ ASSEMBLER = nasm
 KERNEL_FLAG = -ffreestanding -nostdlib -nostdinc
 
 run: ${KERNEL_DIR}/image.bin
-	qemu-system-x86_64 -fda $^
+	qemu-system-i386 -fda $^
 
 ${KERNEL_DIR}/image.bin: ${BOOT_DIR}/boot.o ${KERNEL_DIR}/kernel.bin
 	wsl -e cat $^ > $@

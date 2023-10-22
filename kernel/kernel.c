@@ -6,7 +6,6 @@ void index() {
     char message[] = "Hello, World! from HOS!";
 
     clear_screen();
-    set_cursor_offset(45);
 
     int i = 0;
     while (*(message + i) != 0) {
@@ -16,5 +15,7 @@ void index() {
         // Color
         *video_memory = (char) 0x0a;
         video_memory ++;
+
+        // for (int i = 0; i < 100000000; i++); // delay.
     }
 }
