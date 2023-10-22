@@ -1,3 +1,4 @@
+# Ignore temp files.
 *.o
 *.bin
 *.tmp
