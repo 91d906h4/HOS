@@ -1,6 +1,14 @@
 [org 0x7c00]
+    jmp 0:boot
+
+boot:
+    xor ax, ax
+    mov es, ax
+    mov ds, ax
+    mov ss, ax
+
     mov [BOOT_DRIVE], dl
-    mov bp, 0x9000
+    mov bp, 0x90000
     mov sp, bp
 
     mov bx, MSG_REAL_MODE
@@ -23,7 +31,7 @@ load_kernel:
     call rm_print
 
     mov bx, KERNEL_OFFSET
-    mov dh, 2
+    mov dh, 16
     mov dl, [BOOT_DRIVE]
 
     call disk_load

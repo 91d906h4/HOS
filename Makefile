@@ -1,12 +1,13 @@
 # Setting directories.
+LIB_DIR = ./lib
 BOOT_DIR = ./boot
 KERNEL_DIR = ./kernel
 DRIVERS_DIR = ./drivers
 
 # Setting files.
 ASM_FILE = $(wildcard ${BOOT_DIR}/*.asm)
-H_FILE = $(wildcard ${KERNEL_DIR}/*.h ${DRIVERS_DIR}/*.h)
-C_FILE = $(wildcard ${KERNEL_DIR}/*.c ${DRIVERS_DIR}/*.c)
+H_FILE = $(wildcard ${KERNEL_DIR}/*.h ${DRIVERS_DIR}/*.h ${LIB_DIR}/*.h)
+C_FILE = $(wildcard ${KERNEL_DIR}/*.c ${DRIVERS_DIR}/*.c ${LIB_DIR}/*.c)
 
 # Setting tools.
 COMPILER = gcc

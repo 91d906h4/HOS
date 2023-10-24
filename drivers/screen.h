@@ -11,5 +11,7 @@
 
 void clear_screen();
 int print_char(char c, int col, int row, char attr);
+void kprint(char *message);
+void kprint_at(char *message, int col, int row);
 
 #endif
