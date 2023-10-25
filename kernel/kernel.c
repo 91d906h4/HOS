@@ -2,7 +2,7 @@
 #include "../drivers/port.h"
 #include "../drivers/screen.h"
 
-void index() {
+void main() {
     char* video_memory = (char*) 0xb8000;
     char message[] = "Hello, World! from HOS!";
 
@@ -27,12 +27,9 @@ void index() {
         kprint_at(str, 0, i);
     }
 
-    char a[] = "This text forces the kernel to scroll. Row 0 will disappear. ";
+    for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 100000000; i++); // delay.
 
-    kprint_at(a, 60, 24);
-    kprint_at("asdasdasda sad as   ", -1, -1);
-
-    char b[] = "000000000000000000000000000000000000000000000000000000000000001";
-    kprint_at(b, -1, -1);
-    kprint_at(b, -1, -1);
+        kprint_at("This text forces the kernel to scroll. Row 0 will disappear. ", 60, 24);
+    }
 }
