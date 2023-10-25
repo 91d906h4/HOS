@@ -4,12 +4,14 @@
 
 - Windows 11 (x86)
 - NASM
-- GCC (64-bits)
+- i686 Cross Compiler
 - make
 - WSL
 - QEMU (64-bits)
 
 ## Usage
+
+This Makefile is for Windows 11.
 
 ```sh
 make
