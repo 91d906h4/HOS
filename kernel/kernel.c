@@ -14,7 +14,7 @@ void main() {
         video_memory ++;
 
         // Color
-        *video_memory = (char) 0x0a;
+        *video_memory = 0x0a;
         video_memory ++;
 
         // for (int i = 0; i < 100000000; i++); // delay.
