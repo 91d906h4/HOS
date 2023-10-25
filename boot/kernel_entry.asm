@@ -1,4 +1,5 @@
 [bits 32]
-[extern _index]
-call _index
+[extern main]
+; Call main function in kernel.c.
+call main
 jmp $
