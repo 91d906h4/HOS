@@ -1,25 +1,26 @@
 #include "util.h"
 
-void memory_copy(char *source, char *dest, int nbytes) {
-    int i;
-    for (i = 0; i < nbytes; i++) {
+void mem_copy(char *source, char *dest, int n) {
+    for (int i = 0; i < n; i++) {
         *(dest + i) = *(source + i);
     }
 }
 
-/**
- * K&R implementation
- */
 void int_to_ascii(int n, char str[]) {
-    int i, sign;
+    int sign, p = 0;
+
     if ((sign = n) < 0) n = -n;
-    i = 0;
-    do {
-        str[i++] = n % 10 + '0';
-    } while ((n /= 10) > 0);
 
-    if (sign < 0) str[i++] = '-';
-    str[i] = '\0';
+    do str[p++] = n % 10 + 48; // '0' = 48.
+    while ((n /= 10) > 0);
 
-    /* TODO: implement "reverse" */
+    if (sign < 0) str[p++] = '-';
+
+    for (int i = 0; i < p >> 1; i++) {
+        char temp = str[i];
+        str[i] = str[p - i - 1];
+        str[p - i - 1] = temp;
+    }
+
+    str[p] = '\0';
 }

@@ -21,15 +21,15 @@ void main() {
     }
 
     i = 0;
-    for (i = 0; i < 24; i++) {
+    for (i = -240; i < 240; i++) {
         char str[255];
         int_to_ascii(i, str);
-        kprint_at(str, 0, i);
+        kprint(str);
     }
 
     for (int i = 0; i < 10; i++) {
         for (int i = 0; i < 100000000; i++); // delay.
 
-        kprint_at("This text forces the kernel to scroll. Row 0 will disappear. ", 60, 24);
+        kprint_at("This text forces the kernel to scroll.\tRow 0 will disappear. ", 60, 24);
     }
 }
