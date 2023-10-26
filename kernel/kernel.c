@@ -1,12 +1,21 @@
 #include "../cpu/isr.h"
 #include "../cpu/idt.h"
+#include "../cpu/timer.h"
 #include "../lib/util.h"
 #include "../drivers/port.h"
 #include "../drivers/screen.h"
+#include "../drivers/keyboard.h"
 
 void main() {
     // Initialize ISR.
-    isr_init();
+    init_isr();
+
+    __asm__ __volatile__("sti");
+    init_timer(50);
+
+    init_keyboard();
+
+    return;
 
     char* video_memory = (unsigned char*) 0xb8000;
     char message[] = "Hello, World! from HOS!";
@@ -37,8 +46,4 @@ void main() {
 
         kprint_at("This text forces the kernel to scroll.\tRow 0 will disappear. ", 60, 24);
     }
-
-    // ISR test.
-    __asm__ __volatile__("int $5");
-    return;
 }
