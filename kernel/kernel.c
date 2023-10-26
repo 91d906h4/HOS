@@ -8,10 +8,6 @@ void main() {
     // Initialize ISR.
     isr_init();
 
-    // ISR test.
-    __asm__ __volatile__("int $5");
-    return;
-
     char* video_memory = (unsigned char*) 0xb8000;
     char message[] = "Hello, World! from HOS!";
 
@@ -41,4 +37,8 @@ void main() {
 
         kprint_at("This text forces the kernel to scroll.\tRow 0 will disappear. ", 60, 24);
     }
+
+    // ISR test.
+    __asm__ __volatile__("int $5");
+    return;
 }
