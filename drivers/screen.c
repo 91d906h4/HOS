@@ -1,6 +1,4 @@
 #include "screen.h"
-#include "port.h"
-#include "../lib/util.h"
 
 // Declaration of private functions.
 int print_char(char c, int col, int row, char attr);

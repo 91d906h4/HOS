@@ -1,9 +1,15 @@
 #include "util.h"
 
-void mem_copy(char *source, char *dest, int n) {
+void mem_copy(char* source, char* dest, int n) {
     for (int i = 0; i < n; i++) {
         *(dest + i) = *(source + i);
     }
+}
+
+void mem_set(u8* dest, u8 val, u32 n) {
+    u8* temp = (u8*) dest;
+
+    while (n-- != 0) *temp++ = val;
 }
 
 void int_to_ascii(int n, char str[]) {

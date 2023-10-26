@@ -1,5 +1,6 @@
 [bits 32]
 [extern main]
-; Call main function in kernel.c.
-call main
-jmp $
+    ; Call main function in kernel.c.
+    call main
+
+    jmp $

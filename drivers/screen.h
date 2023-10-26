@@ -1,6 +1,9 @@
 #ifndef _SCREEN_H
 #define _SCREEN_H
 
+#include "port.h"
+#include "../lib/util.h"
+
 #define VIDEO_ADDRESS (unsigned char *) 0xb8000
 #define MAX_ROWS 25
 #define MAX_COLS 80

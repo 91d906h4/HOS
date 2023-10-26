@@ -1,9 +1,18 @@
+#include "../cpu/isr.h"
+#include "../cpu/idt.h"
 #include "../lib/util.h"
 #include "../drivers/port.h"
 #include "../drivers/screen.h"
 
 void main() {
-    char* video_memory = (char*) 0xb8000;
+    // Initialize ISR.
+    isr_init();
+
+    // ISR test.
+    __asm__ __volatile__("int $5");
+    return;
+
+    char* video_memory = (unsigned char*) 0xb8000;
     char message[] = "Hello, World! from HOS!";
 
     clear_screen();

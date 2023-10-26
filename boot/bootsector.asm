@@ -9,7 +9,7 @@ boot:
     mov ss, ax
 
     mov [BOOT_DRIVE], dl
-    mov bp, 0x9000
+    mov bp, 0x90000
     mov sp, bp
 
     mov bx, MSG_REAL_MODE
